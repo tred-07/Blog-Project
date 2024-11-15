@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% if messages %}
+{% for m in messages %}
+<h1 {%if m.tags %}class="btn btn-{{m.tags}}"{% endif %} style="width: 100%;text-align: center;">{{m}}</h1>
+{% endfor %}
+{% endif %}
+
+
+<div id="cards" style="display: flex;flex-wrap: wrap;width: 100%;">
+    {% for blog in blogs %}
+
+ <div class="card" style="width: 18rem;width: 25%;margin:10px;">
+    <div class="card-body">
+        <h1>{{blog.title}}</h1>
+        <h3>{{blog.description}}</h3>
+        <h3>Category: 
+            {% for cat in blog.category.all %}
+            <btn class="btn btn-primary">{{cat}}</btn>
+            {% endfor %}</h3>
+        <h3>Author: <span style="text-transform: uppercase;">{{blog.author}}</span></h3>
+        <h3>Date: {{blog.date}}</h3>
+    </div>
+  </div>
+
+ 
+
+{% endfor %}
+</div>
+
+{% endblock %}
