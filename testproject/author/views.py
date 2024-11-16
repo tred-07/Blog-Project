@@ -6,10 +6,15 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from .models import Blog
-def home(r):
+from category import models
+def home(r,slug1=None):
     blogs=Blog.objects.all()
+    categorys=models.Category.objects.all()
+    if slug1 is not None:
+        category1=models.Category.objects.get(slug=slug1)
+        blogs=Blog.objects.filter(category=category1)
     print(blogs)
-    return render(r,'home.html',{'blogs':blogs})
+    return render(r,'home.html',{'blogs':blogs,'categorys':categorys})
 
 @login_required
 def profile(r):

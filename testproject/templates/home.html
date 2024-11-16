@@ -7,8 +7,12 @@
 <h1 {%if m.tags %}class="btn btn-{{m.tags}}"{% endif %} style="width: 100%;text-align: center;">{{m}}</h1>
 {% endfor %}
 {% endif %}
-
-
+<div id="radio-btns"  style="width: 80%;display: flex;gap:10px;flex-wrap: wrap;margin: auto;justify-content: center;">
+   {% for category in categorys %}
+      <a href="{% url 'slugwise' category.slug %}" class="btn btn-primary">{{category}}</a>
+   {% endfor %}
+</div>
+<h3 style="text-align: center;">{{blogs|length}} blogs found.</h3>
 <div id="cards" style="display: flex;flex-wrap: wrap;width: 100%;">
     {% for blog in blogs %}
 

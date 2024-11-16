@@ -10,3 +10,6 @@ class Blog(models.Model):
     author=models.ForeignKey(User,on_delete=models.CASCADE)
     date=models.DateTimeField()
     category=models.ManyToManyField(Category)
+
+    def __str__(self):
+        return f'{self.title}'
